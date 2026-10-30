@@ -24,7 +24,7 @@ else if ((ARGS[2].startsWith("-n") || ARGS[2].startsWith("--full-name")) && ARGS
   input = ARGS[3].trim()
   file = `${flag}_${input.replaceAll(" ", "_")}`
 
-  var [terminalOutput, fileOutput] = await getFullNameData(input)
+  let [terminalOutput, fileOutput] = await getFullNameData(input)
   console.log(terminalOutput)
   console.log(GREEN_BOLD(`Report successfully written to ${await writeToFile(file, fileOutput)}`))
 }
@@ -34,7 +34,7 @@ else if ((ARGS[2].startsWith("-ip") || ARGS[2].startsWith("--ip-address")) && AR
     input = ARGS[3];
     file = `${flag}_${input.replaceAll(".", "_")}`
 
-    var [terminalOutput, fileOutput] = await getIPdata(input)
+    let [terminalOutput, fileOutput] = await getIPdata(input)
     console.log(terminalOutput)
     console.log(GREEN_BOLD(`Report successfully written to ${await writeToFile(file, fileOutput)}`))
   }
@@ -49,7 +49,7 @@ else if ((ARGS[2].startsWith("-un") || ARGS[2].startsWith("--username")) && ARGS
   input = ARGS[3].trim()
   file = `${flag}_${input.replaceAll("@", "")}`
 
-  var [terminalOutput, fileOutput] = await getUsernameData(input)
+  let [terminalOutput, fileOutput] = await getUsernameData(input)
   console.log(terminalOutput)
   console.log(GREEN_BOLD(`Report successfully written to ${await writeToFile(file, fileOutput)}`))
 }
