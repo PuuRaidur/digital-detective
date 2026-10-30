@@ -62,5 +62,6 @@ export default async function getIPdata(ip) {
     fileOutput += `ip2location: ${ip2LocationBody.report}\n`
     fileOutput += `ISP / Network Owner: ${getISP(ipApiBody, ip2LocationBody)}\n`
     fileOutput += `Location: ${getLocation(ipApiBody, ip2LocationBody)}\n`
+    
     return [terminalOutput, fileOutput]
 }
