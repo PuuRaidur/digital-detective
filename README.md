@@ -7,6 +7,7 @@ Digital Detective is a OSINT CLI tool that gathers publicly available informatio
 - gather someone's address and phone number based on their name
 - gather IP-related data such as ISP and geolocation
 - check whether an username exists on specific social media platforms
+- writing results to a file
 
 ## Prerequisites
 
@@ -23,7 +24,7 @@ cd digital-detective
 npm install
 ```
 
-2. Add your [IP2Location](https://www.ip2location.io/) and [Apify](https://apify.com)'s `one-api/skip-trace` Actor API keys into .env:
+2. Add your [IP2Location](https://www.ip2location.io/) and [Apify](https://apify.com)'s `one-api/skip-trace` Actor API keys into .env file at project root:
 ```bash
 IP2LOCATION_API_KEY="your-api-key"
 APIFY_API_KEY="your-api-key"
