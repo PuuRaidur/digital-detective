@@ -16,6 +16,7 @@ ${chalk.green("-un; --username")} - Perform an username search`);
 // write to file. if file exists, then append number to the end
 export async function writeToFile(file, output) {
     const REPORTS_DIR = "./reports"
+    const RED_BOLD = chalk.red.bold
     await mkdir(REPORTS_DIR, {recursive: true})
 
     for(let i = 0; ;i++) {
@@ -24,6 +25,10 @@ export async function writeToFile(file, output) {
         try {
             await writeFile(path.join(REPORTS_DIR, fileName), output, {flag: 'wx'})
             return path.join(REPORTS_DIR, fileName)
-        } catch (err) { if (err.code !== 'EEXIST') throw err }
+        } catch (err) {
+            if (err.code !== 'EEXIST') {
+                console.log(`${RED_BOLD("Error occurred writing to file: ")} ${err.message}`)
+            }
+        }
     }
 }
