@@ -42,22 +42,23 @@ async function createBody(body) {
 // Main function to retrieve IP-related info
 export default async function getIPdata(ip) {
     // Parallel API calls. Improves performance
-    let [ipApiResponse, ip2LocationResponse] = await Promise.allSettled([
+    const responses = await Promise.allSettled([
     fetch(`http://ip-api.com/json/${ip}`, { signal: AbortSignal.timeout(8000) }),
     fetch(`https://api.ip2location.io/?ip=${ip}&key=${process.env.IP2LOCATION_API_KEY}`, { signal: AbortSignal.timeout(8000) })
     ])
 
-    let ipApiBody = await createBody(ipApiResponse)
-    let ip2LocationBody = await createBody(ip2LocationResponse)
+    const [ipApiBody, ip2LocationBody] = await Promise.all(responses.map(createBody))
 
     let terminalOutput = ""
     let fileOutput = "";
 
+    // terminal output
     terminalOutput += `${chalk.green.bold("ip-api:")} ${ipApiBody.report}\n`
     terminalOutput += `${chalk.green.bold("ip2location:")} ${ip2LocationBody.report}\n`
     terminalOutput += `${chalk.yellow.bold("ISP / Network Owner:")} ${getISP(ipApiBody, ip2LocationBody)}\n`
     terminalOutput += `${chalk.yellow.bold("Location:")} ${getLocation(ipApiBody, ip2LocationBody)}\n`
 
+    // file input
     fileOutput += `ip-api: ${ipApiBody.report}\n`
     fileOutput += `ip2location: ${ip2LocationBody.report}\n`
     fileOutput += `ISP / Network Owner: ${getISP(ipApiBody, ip2LocationBody)}\n`
