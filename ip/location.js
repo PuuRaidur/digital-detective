@@ -23,7 +23,7 @@ export default function getLocation(ipApiBody, ip2LocationBody) {
     const sameCountry = checkCountry(ipApiBody, ip2LocationBody)
     const sameCity = checkCity(ipApiBody, ip2LocationBody)
 
-    // Different scenarios with extra checks
+    // Cross-referencing
     if(ipApiBody.isError && ip2LocationBody.isError) {
         return "Not found | Errors occurred"
     }

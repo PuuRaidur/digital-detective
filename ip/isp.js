@@ -10,7 +10,7 @@ function checkASN(ipApiBody, ip2LocationBody) {
 export default function getISP(ipApiBody, ip2LocationBody) {
     const sameASN = checkASN(ipApiBody, ip2LocationBody)
 
-    // Different scenarios with extra checks
+    // Cross-referencing
     if (sameASN) {
         return `${ipApiBody.isp} | Confirmed by both sources`
     }
