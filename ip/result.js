@@ -1,3 +1,4 @@
+import chalk from "chalk"
 import getISP from "./isp.js"
 import getLocation from "./location.js"
 
@@ -23,7 +24,8 @@ async function createBody(body) {
                 message = `${error.name} - ${error.message}`
             }
         } else if (body.value.status === 429) {
-            message = `${body.value.status} error - Too many requests. Rate-limit reached. Try again later.`
+            const retryAfter = body.value.headers.get('Retry-After')
+            message = `${body.value.status} error - Too many requests. Try again after ${retryAfter} seconds.`
         } else if(!body.value.ok) {
             message = `${body.value.status} error - ${body.value.statusText}`
         } else {
@@ -48,10 +50,17 @@ export default async function getIPdata(ip) {
     let ipApiBody = await createBody(ipApiResponse)
     let ip2LocationBody = await createBody(ip2LocationResponse)
 
-    let result = "";
-    result += `ip-api: ${ipApiBody.report}\n`
-    result += `ip2location: ${ip2LocationBody.report}\n`
-    result += `ISP / Network Owner: ${getISP(ipApiBody, ip2LocationBody)}\n`
-    result += `Location: ${getLocation(ipApiBody, ip2LocationBody)}\n`
-    return result
+    let terminalOutput = ""
+    let fileOutput = "";
+
+    terminalOutput += `${chalk.green.bold("ip-api:")} ${ipApiBody.report}\n`
+    terminalOutput += `${chalk.green.bold("ip2location:")} ${ip2LocationBody.report}\n`
+    terminalOutput += `${chalk.yellow.bold("ISP / Network Owner:")} ${getISP(ipApiBody, ip2LocationBody)}\n`
+    terminalOutput += `${chalk.yellow.bold("Location:")} ${getLocation(ipApiBody, ip2LocationBody)}\n`
+
+    fileOutput += `ip-api: ${ipApiBody.report}\n`
+    fileOutput += `ip2location: ${ip2LocationBody.report}\n`
+    fileOutput += `ISP / Network Owner: ${getISP(ipApiBody, ip2LocationBody)}\n`
+    fileOutput += `Location: ${getLocation(ipApiBody, ip2LocationBody)}\n`
+    return [terminalOutput, fileOutput]
 }
