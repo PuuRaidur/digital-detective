@@ -2,6 +2,7 @@ import chalk from "chalk"
 import checkStatus from "./status.js"
 import {scrapeTelegram, scrapePinterest, scrapeX} from "./scrape.js"
 
+// create the correct kind of object
 async function createBody(response) {
     if(response.status === "fulfilled") {
         try {
@@ -17,6 +18,7 @@ async function createBody(response) {
 }
 
 export default async function getUsernameData(username) {
+    // Parallel fetching for better performance
     const responses = await Promise.allSettled([
         fetch(`https://github.com/${username.trim().replace(/@/g, "")}`, { signal: AbortSignal.timeout(8000) }),
         fetch(`https://dev.to/${username.trim().replace(/@/g, "")}`, { signal: AbortSignal.timeout(8000)}),

@@ -1,3 +1,4 @@
+// check whether username exists or not
 export default function checkStatus(body) {
     if (body.isError) {
         return body.report

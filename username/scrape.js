@@ -1,3 +1,4 @@
+// web scraping functions for each platform
 import * as cheerio from "cheerio"
 
 function getAnswer(username) {
