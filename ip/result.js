@@ -41,8 +41,8 @@ async function createBody(body) {
 export default async function getIPdata(ip) {
     // Parallel API calls. Improves performance
     let [ipApiResponse, ip2LocationResponse] = await Promise.allSettled([
-    fetch(`http://ip-api.com/json/${ip}`, { signal: AbortSignal.timeout(10000) }),
-    fetch(`https://api.ip2location.io/?ip=${ip}&key=${process.env.IP2LOCATION_API_KEY}`, { signal: AbortSignal.timeout(10000) })
+    fetch(`http://ip-api.com/json/${ip}`, { signal: AbortSignal.timeout(8000) }),
+    fetch(`https://api.ip2location.io/?ip=${ip}&key=${process.env.IP2LOCATION_API_KEY}`, { signal: AbortSignal.timeout(8000) })
     ])
 
     let ipApiBody = await createBody(ipApiResponse)
