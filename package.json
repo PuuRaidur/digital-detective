@@ -1,0 +1,27 @@
+{
+  "name": "digital-detective",
+  "version": "1.0.0",
+  "description": "OSINT data gathering CLI tool",
+  "keywords": [
+    "nodejs",
+    "osint",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitea.kood.tech:georgkaasik/digital-detective.git"
+  },
+  "license": "GPL-3.0-only",
+  "author": "Georg Kaasik",
+  "type": "module",
+  "main": "data_digger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "apify-client": "^2.20.0",
+    "chalk": "^6.0.1",
+    "cheerio": "^1.2.0",
+    "dotenv": "^18.0.8"
+  }
+}
