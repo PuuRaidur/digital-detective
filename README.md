@@ -28,7 +28,7 @@ cd digital-detective
 npm install
 ```
 
-2. Add your [IP2Location](https://www.ip2location.io/) and [Apify](https://apify.com)'s `one-api/skip-trace` Actor API keys into .`env` file at project root:
+2. Add your [IP2Location](https://www.ip2location.io/) and [Apify](https://apify.com)'s `one-api/skip-trace` Actor API keys into `.env` file at project root:
 ```bash
 IP2LOCATION_API_KEY="your-api-key"
 APIFY_API_KEY="your-api-key"
