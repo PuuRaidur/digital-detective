@@ -2,7 +2,7 @@
 
 Digital Detective is a OSINT CLI tool that gathers publicly available information by IP address; username; or a full name.
 
-Read about Policy [here](./POLICY.md)
+Read about [Policy](./POLICY.md) and [Contributing](./CONTRIBUTING.md)
 
 ## Features
 
